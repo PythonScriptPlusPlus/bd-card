@@ -1,18 +1,42 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div  class="home">
+    <ParallaxHeader id="my-canvas"/>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
+    <h2>Welcome to Your Vue.js App</h2>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import ParallaxHeader from '@/components/ParallaxHeader.vue';
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld,
+    ParallaxHeader,
   },
 };
+
 </script>

@@ -20,11 +20,11 @@ df = pd.DataFrame(columns=["date", "text", "views", "media","reactions","is_forw
 try:
     url = "https://t.me/s/yottoikotto"
     driver.get(url)
-    time.sleep(5)  # Wait for page to load
+    time.sleep(2)  # Wait for page to load
 
     # Example: Parse message texts
-    # target_text = "November 15, 2024"
-    target_text = "September 18"
+    target_text = "November 15, 2024"
+    # target_text = "September 18"
     last_height = driver.execute_script("return document.body.scrollHeight")
     found = False
 
@@ -42,19 +42,24 @@ try:
         if new_height == 0:
             print(f'"{target_text}" does not exist on the page.')
             break
-        print("Scrolling up...")
+        print(f"Scrolling up... {time.strftime('%Y-%m-%d %H:%M:%S')}")
 
     for post in driver.find_elements(By.CSS_SELECTOR, "div.tgme_widget_message_wrap"):
         try:
-            date_elem = post.find_element(By.CSS_SELECTOR, "time")
-            print(date_elem.get_attribute('outerHTML'))
+            date_elem = None
+            for elem in post.find_elements(By.CSS_SELECTOR, "time"):
+                if "time" in elem.get_attribute("class").split():
+                    date_elem = elem
+                    break
+            # print(date_elem.get_attribute('outerHTML'))
             date = date_elem.get_attribute("datetime") if date_elem else None
         except NoSuchElementException:
-            print("Date element not found.")
+            # print("Date element not found.")
             date = None
 
         try:
-            text = post.find_element(By.CSS_SELECTOR, "div.tgme_widget_message_text").text
+            text_elem = post.find_element(By.CSS_SELECTOR, "div.tgme_widget_message_text.js-message_text")
+            text = text_elem.text
         except NoSuchElementException:
             text = None
 
@@ -64,10 +69,28 @@ try:
             views = None
 
         try:
-            media = post.find_elements(By.CSS_SELECTOR, "a.tgme_widget_message_photo_wrap, a.tgme_widget_message_document_wrap, a.tgme_widget_message_video_player")
-            media_links = [m.get_attribute("href") for m in media if m.get_attribute("href")]
+            photos = post.find_elements(By.CSS_SELECTOR, "a.tgme_widget_message_photo_wrap")
+            documents = post.find_elements(By.CSS_SELECTOR, "a.tgme_widget_message_document_wrap")
+            videos = post.find_elements(By.CSS_SELECTOR, "a.tgme_widget_message_video_player")
+
+            # photo_links = [m.get_property("backgroundImage") for m in photos if m.get_property("backgroundImage") != 'none']
+
+            photo_links = []
+            for m in photos:
+                bg_image = m.value_of_css_property("background-image")[4:-2]
+                # print(f'bg_image: {bg_image}')
+                if bg_image and bg_image != 'none':
+                    photo_links.append(bg_image)
+            document_links = [m.get_attribute("href") for m in documents if m.get_attribute("href")]
+            video_links = [m.get_attribute("href") for m in videos if m.get_attribute("href")]
+
+            media_links = {
+            "photos": photo_links,
+            "documents": document_links,
+            "videos": video_links
+            }
         except NoSuchElementException:
-            media_links = None
+            media_links = {"photos": [], "documents": [], "videos": []}
 
         try:
             reaction_spans = post.find_elements(By.CSS_SELECTOR, "span.tgme_reaction")
@@ -85,7 +108,7 @@ try:
             reactions = None
 
         try:
-            is_forwarded = bool(post.find_elements(By.CSS_SELECTOR, "div.tgme_widget_message_forwarded"))
+            is_forwarded = bool(post.find_elements(By.CSS_SELECTOR, "div.tgme_widget_message_forwarded_from"))
         except NoSuchElementException:
             is_forwarded = False
 

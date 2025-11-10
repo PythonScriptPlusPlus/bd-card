@@ -173,11 +173,12 @@ export default {
     -webkit-overflow-scrolling: touch; /* smooth touch scrolling on iOS */
     scroll-snap-type: x mandatory;
     align-items: start;
+    border-bottom: 2px solid #2c3e50;
 }
 
 /* optional: hide native scrollbar for a cleaner look (still scrollable) */
 .elements-list::-webkit-scrollbar {
-  height: 8px;
+  display: none;
 }
 .elements-list::-webkit-scrollbar-thumb {
   background: rgba(0,0,0,0.2);

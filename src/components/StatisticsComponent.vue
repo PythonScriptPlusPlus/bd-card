@@ -26,63 +26,43 @@ export default {
       facts: [
         {
           title: '127 постов сделано за этот год!',
-          subtitle: 'Это как у Карла Лагерфелда, но на 127 больше',
+          subtitle: 'Весь СММ Billie Eilish смог себе позволить только 64 поста в инстаграме за тот же период',
+          image: '/img/stats/post_counts.png',
         },
         {
           title: 'Твои посты настолько вовлекающие, что суммарно они получили 1701 реакцию',
           subtitle: 'из них 1031 ❤️',
+          image: '/img/stats/hearts_vs.png',
         },
         {
-          title: 'Среднее число реакций на пост',
-          subtitle: '13.3 реакции в среднем',
+          title: 'Пост с наибольшим количеством реакций',
+          subtitle: '',
+          image: '/img/stats/summer_review.png',
         },
         {
-          title: 'Наиболее реактивные посты',
-          subtitle: 'sss',
-        },
-        {
-          title: 'Единственный пост с негативными реакциями',
-          subtitle: 'о начале сентября',
+          title: 'Единственный пост с негативными реакциями - о сентябре',
+          subtitle: 'Очень даже понимаемо!',
+          image: '/img/stats/September.jpg',
         },
         {
           title: 'Постов с фото',
-          subtitle: '87 постов',
-        },
-        {
-          title: 'Всего фото',
-          subtitle: '495 фото',
-        },
-        {
-          title: 'Процент сообщений с фото',
-          subtitle: '68.50%',
+          subtitle: '87 постов, в которых 495 фото',
         },
         {
           title: 'Постов с видео',
-          subtitle: '57 постов',
-        },
-        {
-          title: 'Всего видео',
-          subtitle: '152 видео',
-        },
-        {
-          title: 'Процент сообщений с видео',
-          subtitle: '44.88%',
-        },
-        {
-          title: 'Самый просматриваемый пост',
-          subtitle: 'подготовка к видео про окончание колледжа',
+          subtitle: '57 постов, в которых 152 видео',
         },
         {
           title: 'Среднее количество просмотров на пост',
           subtitle: '115 просмотров',
         },
         {
-          title: 'Суммарные просмотры',
-          subtitle: '15524 просмотра',
+          title: 'Самый просматриваемый пост',
+          subtitle: 'подготовка к видео про окончание колледжа',
         },
         {
-          title: 'Пересланные посты',
-          subtitle: '14 постов были пересланы от других',
+          title: 'Суммарные просмотры',
+          subtitle: '15524 просмотра',
         },
         {
           title: 'Самый активный месяц',
@@ -93,16 +73,8 @@ export default {
           subtitle: 'пятница — 26 постов',
         },
         {
-          title: 'Самый длинный перерыв между постами',
-          subtitle: 'между 29 июля и 15 августа',
-        },
-        {
-          title: 'Самый длинный пост',
-          subtitle: '234 слова (23.12.2024)',
-        },
-        {
-          title: 'Самое употребляемое слово',
-          subtitle: '«и»',
+          title: 'Самый длинный перерыв между постами - c 29 июля по 15 августа',
+          subtitle: 'где ты была?',
         },
         {
           title: 'Самое употребляемое слово (не предлог/местоимение)',
@@ -145,6 +117,15 @@ export default {
     -webkit-overflow-scrolling: touch; /* smooth touch scrolling on iOS */
     scroll-snap-type: x mandatory;
     align-items: start;
+}
+
+.elements__image {
+    width: 95%;
+    aspect-ratio: 1/2;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    // margin-top: 12px;
 }
 
 /* individual card/item */

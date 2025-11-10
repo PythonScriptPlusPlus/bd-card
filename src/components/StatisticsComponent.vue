@@ -2,17 +2,22 @@
     <div class="statistics__header">
         <h1 class="statistics__title">Год был невероятным</h1>
         <h2 class="statistics__subtitle">А твой телеграм был хорошим способом запечатлеть это!</h2>
-
-        <!-- horizontal scroll container -->
         <div class="elements-list" role="list">
             <div class="element" v-for="(fact, index) in facts" :key="index" role="listitem">
                 <div class="element__wrapper">
+                  <div>
                     <h3 class="element__title">{{ fact.title }}</h3>
                     <p class="element__subtitle">{{ fact.subtitle }}</p>
-                    <div
-                        class="element__image"
-                        :style="fact.image ? { backgroundImage: `url(${fact.image})` } : null"
-                    ></div>
+                  </div>
+                  <div class="element__bottom">
+                    <img
+                      v-if="fact.image"
+                      class="element__image"
+                      :src="fact.image"
+                      :alt="fact.title || ''"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
             </div>
         </div>
@@ -58,7 +63,8 @@ export default {
         },
         {
           title: 'Самый просматриваемый пост',
-          subtitle: 'подготовка к видео про окончание колледжа',
+          subtitle: 'очень неожиданный ответ на 558 просмотров',
+          image: '/img/stats/most_viewed.png',
         },
         {
           title: 'Суммарные просмотры',
@@ -118,14 +124,13 @@ export default {
 
   &__image {
     width: 95%;
-    aspect-ratio: 1/2;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-      // margin-top: 12px;
+    height: auto;
+    // aspect-ratio: 1/2;
   }
 
   &__wrapper {
+    display: flex;
+    flex-direction: column;
     height: calc(2/3 * 100vh);
     aspect-ratio: 2/5;
     margin-bottom: 0;
@@ -143,6 +148,14 @@ export default {
 
   &__subtitle {
     margin: 0;
+  }
+
+  &__bottom {
+    flex: 1 1 auto;             /* take remaining vertical space */
+    display: flex;
+    align-items: center;        /* vertical centering inside middle area */
+    justify-content: center;    /* horizontal centering */
+    padding: 8px 0;
   }
 }
 

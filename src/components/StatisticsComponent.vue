@@ -69,6 +69,7 @@ export default {
         {
           title: 'Суммарные просмотры',
           subtitle: '15524 просмотра',
+          image: '/img/stats/apples.webp',
         },
         {
           title: 'Самый активный месяц',
@@ -81,6 +82,7 @@ export default {
         {
           title: 'Самый длинный перерыв между постами - c 29 июля по 15 августа',
           subtitle: 'где ты была?',
+          image: '/img/stats/break.jpg',
         },
         {
           title: 'Самое употребляемое слово (не предлог/местоимение)',

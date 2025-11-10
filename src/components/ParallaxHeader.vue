@@ -1,9 +1,14 @@
 <template>
   <div
     class="parallax"
+    role="button"
+    tabindex="0"
     :style="{ '--parallax-bg-pos-y': `${150 - offset}px` }"
+    @click="fireConfetti"
+    @keydown.enter="fireConfetti"
+    @keydown.space.prevent="fireConfetti"
   >
-    <canvas ref="confettiCanvas" width="100%" height="100%"></canvas>
+    <canvas ref="confettiCanvas"></canvas>
     <h1 class="parallax__title">Happy Birthday!</h1>
     <p>серьёзной дате - серьёзное поздравление</p>
   </div>
@@ -18,80 +23,63 @@ export default {
   data() {
     return {
       offset: 0,
+      myConfetti: null,
     };
   },
   mounted() {
-    // Create a canvas element and append it to the body
     const canvas = this.$refs.confettiCanvas;
+    // make canvas cover parent
     canvas.style.position = 'absolute';
     canvas.style.pointerEvents = 'none';
-    canvas.style.top = 0;
-    canvas.style.left = 0;
+    canvas.style.top = '0';
+    canvas.style.left = '0';
     canvas.style.width = '100%';
     canvas.style.height = '100%';
     canvas.style.zIndex = 2;
 
-    // Initialize confetti only once
-    const myConfetti = confetti.create(canvas, { resize: true });
+    // create confetti instance once and store it
+    this.myConfetti = confetti.create(canvas, { resize: true });
 
-    // Fire confetti bursts
-    const count = 200;
-    const defaults = {
-      origin: { y: 0.7 },
-    };
+    // initial burst
+    this.fireConfetti();
 
-    function fire(particleRatio, opts) {
-      myConfetti({
-        ...defaults,
-        ...opts,
-        particleCount: Math.floor(count * particleRatio),
-      });
-    }
-
-    fire(0.25, {
-      spread: 26,
-      startVelocity: 55,
-    });
-    fire(0.2, {
-      spread: 60,
-    });
-    fire(0.35, {
-      spread: 100,
-      decay: 0.91,
-      scalar: 0.8,
-    });
-    fire(0.1, {
-      spread: 120,
-      startVelocity: 25,
-      decay: 0.92,
-      scalar: 1.2,
-    });
-    fire(0.1, {
-      spread: 120,
-      startVelocity: 45,
-    });
-
-    // Add scroll event listener
+    // scroll listener for parallax
     window.addEventListener('scroll', this.handleScroll);
   },
   beforeUnmount() {
-    // Clean up the canvas when the component is destroyed
-    const canvas = document.getElementById('my-canvas');
-    if (canvas) {
-      canvas.remove();
-    }
-    // Remove scroll event listener
     window.removeEventListener('scroll', this.handleScroll);
+    // clear reference
+    this.myConfetti = null;
   },
   methods: {
     handleScroll() {
-      this.offset = window.pageYOffset * 1.5; // Adjust multiplier for speed
+      this.offset = window.pageYOffset * 1.5;
+    },
+    fireConfetti() {
+      if (!this.myConfetti) return;
+
+      const count = 200;
+      const defaults = { origin: { y: 0.7 } };
+
+      const fire = (particleRatio, opts) => {
+        this.myConfetti({
+          ...defaults,
+          ...opts,
+          particleCount: Math.floor(count * particleRatio),
+        });
+      };
+
+      fire(0.25, { spread: 26, startVelocity: 55 });
+      fire(0.2, { spread: 60 });
+      fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+      // eslint-disable-next-line object-curly-newline
+      fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+      fire(0.1, { spread: 120, startVelocity: 45 });
     },
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .parallax {
   position: relative;
@@ -127,8 +115,5 @@ export default {
     font-size: 3em;
     color: #333;
   }
-
-  // will-change: transform;
-  // transition: transform 0.1s linear;
 }
 </style>

@@ -52,6 +52,7 @@ export default {
         {
           title: 'Постов с фото',
           subtitle: '87 постов, в которых 495 фото',
+          image: '/img/stats/photos.jpg',
         },
         {
           title: 'Постов с видео',
@@ -78,6 +79,7 @@ export default {
         {
           title: 'Больше всего постов по дням недели',
           subtitle: 'пятница — 26 постов',
+          image: '/img/stats/friday.jpg',
         },
         {
           title: 'Самый длинный перерыв между постами - c 29 июля по 15 августа',
@@ -87,6 +89,7 @@ export default {
         {
           title: 'Самое употребляемое слово (не предлог/местоимение)',
           subtitle: '«люблю»',
+          image: '/img/stats/love.jpg',
         },
       ],
     };

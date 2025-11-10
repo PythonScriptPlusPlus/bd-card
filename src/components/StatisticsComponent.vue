@@ -5,12 +5,12 @@
 
         <!-- horizontal scroll container -->
         <div class="elements-list" role="list">
-            <div class="elements__item" v-for="(fact, index) in facts" :key="index" role="listitem">
-                <div class="elements__wrapper">
-                    <h3 class="elements__title">{{ fact.title }}</h3>
-                    <p class="elements__subtitle">{{ fact.subtitle }}</p>
+            <div class="element" v-for="(fact, index) in facts" :key="index" role="listitem">
+                <div class="element__wrapper">
+                    <h3 class="element__title">{{ fact.title }}</h3>
+                    <p class="element__subtitle">{{ fact.subtitle }}</p>
                     <div
-                        class="elements__image"
+                        class="element__image"
                         :style="fact.image ? { backgroundImage: `url(${fact.image})` } : null"
                     ></div>
                 </div>
@@ -108,6 +108,44 @@ export default {
     }
 }
 
+.element {
+  // flex: 0 0 80%;
+  min-width: 260px;  /* ensures usable width on small screens */
+  max-width: 600px;
+  scroll-snap-align: center;
+  background: transparent;
+  box-sizing: border-box;
+
+  &__image {
+    width: 95%;
+    aspect-ratio: 1/2;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+      // margin-top: 12px;
+  }
+
+  &__wrapper {
+    height: calc(2/3 * 100vh);
+    aspect-ratio: 2/5;
+    margin-bottom: 0;
+    text-align: left;
+    padding: 16px;
+    border-radius: 8px;
+    /* optional card visuals */
+    background: rgba(255,255,255,0.03);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__subtitle {
+    margin: 0;
+  }
+}
+
 /* horizontal scroll list */
 .elements-list {
     display: flex;
@@ -117,45 +155,6 @@ export default {
     -webkit-overflow-scrolling: touch; /* smooth touch scrolling on iOS */
     scroll-snap-type: x mandatory;
     align-items: start;
-}
-
-.elements__image {
-    width: 95%;
-    aspect-ratio: 1/2;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    // margin-top: 12px;
-}
-
-/* individual card/item */
-.elements__item {
-    flex: 0 0 80%;     /* adjust percent for how wide each card should be */
-    min-width: 260px;  /* ensures usable width on small screens */
-    max-width: 600px;
-    scroll-snap-align: center;
-    background: transparent;
-    box-sizing: border-box;
-}
-
-/* keep original wrapper height/spacing inside the horizontal item */
-.elements__wrapper {
-    height: calc(2/3 * 100vh);
-    margin-bottom: 0;
-    text-align: left;
-    padding: 16px;
-    border-radius: 8px;
-    /* optional card visuals */
-    background: rgba(255,255,255,0.03);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.elements__title {
-    margin: 0;
-}
-
-.elements__subtitle {
-    margin: 0;
 }
 
 /* optional: hide native scrollbar for a cleaner look (still scrollable) */

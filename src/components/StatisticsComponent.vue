@@ -168,7 +168,7 @@ export default {
 .elements-list {
     display: flex;
     gap: 18px;
-    padding: 20px 10px;
+    padding: 20px 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch; /* smooth touch scrolling on iOS */
     scroll-snap-type: x mandatory;

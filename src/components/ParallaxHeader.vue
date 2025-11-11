@@ -3,7 +3,6 @@
     class="parallax"
     role="button"
     tabindex="0"
-    :style="{ '--parallax-bg-pos-y': `${150 - offset}px` }"
     @click="fireConfetti"
     @keydown.enter="fireConfetti"
     @keydown.space.prevent="fireConfetti"

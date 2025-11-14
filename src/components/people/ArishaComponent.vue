@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img class="image" src="/img/Sugawara Volleyball.png" alt="Sugawara Volleyball.png">
+    <img class="image" src="/img/Sugawara_Volleyball.png" alt="Sugawara Volleyball.png">
   </div>
 </template>
 

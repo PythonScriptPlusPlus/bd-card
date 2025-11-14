@@ -13,5 +13,7 @@ export default {
     width: 100%;
     aspect-ratio: 1/1;
     background-image: url('../../../public/img/glitter.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 </style>

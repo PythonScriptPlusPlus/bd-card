@@ -30,12 +30,14 @@ import confetti from 'canvas-confetti';
 import ArishaComponent from './people/ArishaComponent.vue';
 import UlyaComponent from './people/UlyaComponent.vue';
 import VasComponent from './people/VasComponent.vue';
+import IvanComponent from './people/IvanComponent.vue';
 
 export default {
   components: {
     ArishaComponent,
     UlyaComponent,
     VasComponent,
+    IvanComponent,
   },
   data() {
     return {
@@ -47,6 +49,7 @@ export default {
         {
           from: 'VASSSSS',
           message: 'все также без ума от тебя, любимка, как и в нашу первую встречу!!!!! очень скучаю по тебе и надеюсь, что твоя жизнь будет как наш эпик детсадовский утренник🫵🫵 я проверю',
+          component: 'VasComponent',
         },
         {
           from: 'Кати крекер',
@@ -69,6 +72,19 @@ export default {
           from: 'ариша',
           message: 'алис, очень тебя люблю и всегда рядом! сияй, звездочка!! <3',
           component: 'ArishaComponent',
+        },
+        {
+          from: 'Иван Великолепный',
+          component: 'IvanComponent',
+          message: `АЛИИИС, поздравляю с днём рожения! 
+ТЕБЕ 20 ЛЕТ ЕПТА)))) 
+
+желаю тебе чтобы у тебя всë было хорошо🍷🍷🍷🍷 чтобы было много хороших, честных и добрых людей вокруг тебя🍉🍏🍊
+чтобы ты была счастливой и чтобы было куча денег 
+HAPPY
+⊂_ヽ       \n      ＼＼ Λ＿Λ\n          ＼(    ˇωˇ)\n              >    ⌒ヽ\n            /      へ＼\n         /        /    ＼＼BIRTHDAY\n       ﾚ    ノ          ヽ_つ\n     /    /\n    (    (ヽ\n    |    |、＼\n    | 丿 ＼ ⌒)\n    | |        ) /\nノ )        Lﾉ\n(_／ 
+с днём рождения. 
+желаю тебе чтобы у тебя была своя руссалка`,
         },
       ],
       vasObserver: null,
@@ -189,6 +205,10 @@ export default {
         z-index: 0;
       }
     }
+
+    &:nth-of-type(8) {
+      text-align: left;
+    }
   }
 
   &__from {
@@ -199,6 +219,7 @@ export default {
   &__message {
     font-size: 1.2rem;
     margin: 0;
+    white-space: pre-wrap;
   }
 }
 </style>
